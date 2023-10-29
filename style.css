@@ -14,18 +14,24 @@
 
 /* Styles for the submenu buttons */
 .submenu {
-    display: none; /* Initially hidden */
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    top: 50px;
+    top: 20px;
     left: 20px;
+    width: 100%;
+    transition: top 0.5s ease-in-out;
 }
 
 .submenu.show {
-    display: block; /* Show the submenu when the 'show' class is added */
+    /* display: block; Show the submenu when the 'show' class is added */
+    top: 60px; /* Adjust as needed */
 }
 
 .submenu-button {
-    display: block;
+    top: 20px;
+    left: 20px;
+    display: none;
     margin: 10px 0;
     width: 40px;
     height: 40px;
@@ -34,4 +40,13 @@
     color: #fff;
     border: none;
     cursor: pointer;
+}
+
+.submenu-button.show {
+    display: block; /* Show the button when the 'show' class is added */
+}
+
+.submenu.show .submenu-button.show {
+    opacity: 1; /* Fade in the buttons when submenu is shown */
+    transition: opacity 0.5s ease-in-out;
 }

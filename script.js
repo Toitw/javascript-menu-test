@@ -1,14 +1,24 @@
-// Wrap the code in an event listener for DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function() {
-    // Get the menu button and the submenu
-    const menuButton = document.getElementById("menuButton");
-    const submenu = document.getElementById("submenu");
+    const menuButton = document.getElementById('menuButton');
+    const submenu = document.getElementById('submenu');
+    const submenuButtons = document.querySelectorAll('.submenu-button');
 
-    // Check if the elements exist before adding an event listener
-    if (menuButton && submenu) {
-        // Toggle the display of the submenu
-        menuButton.addEventListener("click", function() {
-            submenu.classList.toggle("show");
+    menuButton.addEventListener('click', function() {
+        submenu.classList.toggle('show');
+        submenuButtons.forEach((button) => {
+            button.classList.toggle('show');
         });
-    }
+
+        if (submenu.classList.contains('show')) {
+            submenuButtons.forEach((button, index) => {
+                setTimeout(() => {
+                    button.style.top = `${index * 50}px`; // Adjust vertical position
+                }, index * 100); // Adjust animation delay
+            });
+        } else {
+            submenuButtons.forEach((button) => {
+                button.style.top = '0';
+            });
+        }
+    });
 });
